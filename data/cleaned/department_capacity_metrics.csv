@@ -1,0 +1,7 @@
+Department,TotalAdmissions,AverageLengthOfStay,TotalReadmissions,ReadmissionRate,TotalCost,AvgCostPerPatient,ReadmissionRatePct
+Cardiology,3355,4.47,545,0.16,37353133.41,11133.57,16.0
+General Medicine,3004,4.51,487,0.16,33696387.19,11217.17,16.0
+Neurology,960,4.42,158,0.16,10683243.19,11128.38,16.0
+Oncology,1781,4.45,278,0.16,19773117.9,11102.26,16.0
+Orthopedics,1691,4.61,248,0.15,19208061.24,11359.0,15.0
+Pulmonology,1209,4.83,174,0.14,14165691.93,11716.87,14.0
