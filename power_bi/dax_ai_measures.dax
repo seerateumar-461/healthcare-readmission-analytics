@@ -1,0 +1,33 @@
+// =============================================================================
+// Power BI AI & Predictive DAX Measures: Healthcare Operations & Readmission
+// Author: Umar Farooq
+// =============================================================================
+
+// 1. Total Admissions
+Total Admissions = COUNTROWS(hospital_admissions_cleaned)
+
+// 2. Total Readmissions Count
+Total Readmissions = SUM(hospital_admissions_cleaned[IsReadmitted30Days])
+
+// 3. 30-Day Readmission Rate
+Readmission Rate % = DIVIDE([Total Readmissions], [Total Admissions], 0)
+
+// 4. Average Length of Stay (ALOS)
+Average ALOS = AVERAGE(hospital_admissions_cleaned[LengthOfStay])
+
+// 5. Total Treatment Expenditures
+Total Healthcare Spend = SUM(hospital_admissions_cleaned[TotalTreatmentCost])
+
+// 6. AI Target: Readmission Likelihood Flag (for Key Influencers Visual)
+Readmission Status Label = 
+IF(SELECTEDVALUE(hospital_admissions_cleaned[IsReadmitted30Days]) = 1, "Readmitted (<30 Days)", "No Readmission")
+
+// 7. Value-Based Penalty Cost Exposure ($)
+Estimated Penalty Exposure = 
+CALCULATE(
+    SUMX(hospital_admissions_cleaned, hospital_admissions_cleaned[TotalTreatmentCost] * 0.35),
+    hospital_admissions_cleaned[IsReadmitted30Days] = 1
+)
+
+// 8. Department ALOS Variance vs Benchmark
+ALOS Variance = [Average ALOS] - 4.5
